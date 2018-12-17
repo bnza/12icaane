@@ -8,4 +8,16 @@ default:
             paths:
                 - '%paths.base%/../tests/btd/features'
             contexts:
-                - App\Contexts\NavigationContext: ~
+                - App\Contexts\NavigationContext:
+                    session: '@session'
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                env:   test
+                debug: true
+                class: App\Kernel
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~

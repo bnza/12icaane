@@ -1,0 +1,18 @@
+
+$primary: darken(#428bca, 20%);
+@import "~bootstrap/scss/bootstrap";
+
+#logo {
+  height: 200px;
+  background: url('../images/logo.png') no-repeat;
+  margin-bottom: 50px;
+}
+
+body {
+  background-color: lightgray;
+  font-family: 'PT Sans', sans-serif;
+}
+
+h3 {
+  color: #af292e;
+}
