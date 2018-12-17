@@ -1,0 +1,11 @@
+default:
+    gherkin:
+        cache: ~
+    autoload:
+        '': '%paths.base%/../tests/btd/features/bootstrap'
+    suites:
+        default:
+            paths:
+                - '%paths.base%/../tests/btd/features'
+            contexts:
+                - App\Contexts\NavigationContext: ~
