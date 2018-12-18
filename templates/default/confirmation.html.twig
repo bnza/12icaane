@@ -4,5 +4,5 @@
     <h3>Confirmation</h3>
     <p>Your request was successfully registered</p>
     <p>For any further request refer it using the following code</p>
-    <p class="align-content-center"><strong>{{ speaker.create_at|date("z") }}-{{ speaker.id }}</strong></p>
+    <p class="align-content-center"><strong id="reg_code">{{ speaker.CreatedAt|date("y") }}{{ speaker.CreatedAt|date("z") }}-{{ "%04d"|format(speaker.Id) }}</strong></p>
 {% endblock %}

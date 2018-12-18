@@ -1,0 +1,8 @@
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   pdo_sqlite
+                url: 'sqlite:///%kernel.cache_dir%/test.db'
+                charset: UTF8

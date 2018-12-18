@@ -38,8 +38,8 @@ class SpeakerType extends AbstractType
                         '7. Endangered cultural heritage' => 7,
                         '8. Islamic archaeology' => 8,
                         'W. ?' => 'W',
-                        'P. Posters' => 'P'
-                    ]
+                        'P. Posters' => 'P',
+                    ],
                 ]
             )
             ->add(
@@ -48,7 +48,7 @@ class SpeakerType extends AbstractType
                 [
                     'label' => 'abstract',
                     'required' => true,
-                    'help' => 'Contribute abstract, 400 to 1000 characters. Required'
+                    'help' => 'Contribute abstract, 400 to 1000 characters. Required',
                 ]
             )
             ->add('email', EmailType::class, ['label' => 'e-mail', 'required' => true])
@@ -59,7 +59,7 @@ class SpeakerType extends AbstractType
                 [
                     'label' => 'remarks',
                     'required' => true,
-                    'help' => 'Up to 300 characters'
+                    'help' => 'Up to 300 characters',
                 ]
             )
             ->add('save', SubmitType::class);

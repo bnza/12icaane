@@ -10,6 +10,7 @@ default:
             contexts:
                 - App\Contexts\NavigationContext:
                     session: '@session'
+                    kernel: '@kernel'
 
     extensions:
         Behat\Symfony2Extension:
