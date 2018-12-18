@@ -6,7 +6,9 @@ use App\Entity\Speaker;
 use App\Entity\Login;
 use App\Form\SpeakerType;
 use App\Form\LoginType;
+use App\Service\CsvSpeakerListCreator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +27,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/register", name="register_speaker")
      *
-     * @param Request          $request
+     * @param Request $request
      * @param SessionInterface $session
      *
      * @return Response
@@ -114,7 +116,7 @@ class DefaultController extends AbstractController
      *
      * @return Response
      */
-    public function list(SessionInterface $session)
+    public function list(SessionInterface $session, CsvSpeakerListCreator $creator)
     {
         if (!$session->get('logged_in', false)) {
             $session->set('login_redirect', 'list');
@@ -122,6 +124,19 @@ class DefaultController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
-        return new Response('Miao');
+        $path = $creator->create();
+        $response = new Response(
+            file_get_contents($path),
+            200,
+            [
+                'Content-type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="speakers.csv"',
+                'Pragma' => 'no-cache',
+                'Expires' => 0,
+                'Content-Length' => filesize($path)
+            ]
+        );
+        unlink($path);
+        return $response;
     }
 }

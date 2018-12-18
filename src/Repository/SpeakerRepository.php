@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Speaker;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -47,4 +48,11 @@ class SpeakerRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllAsArray()
+    {
+        return $this->createQueryBuilder('s')
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+    }
 }
